@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quantum Pad</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/mathlive"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="workspace" aria-labelledby="app-title">
+        <header class="topbar">
+          <div>
+            <h1 id="app-title">Quantum Pad</h1>
+            <p>Math input for Codex quantum notation</p>
+          </div>
+          <div class="status" id="status" aria-live="polite">Ready</div>
+        </header>
+
+        <div class="layout">
+          <section class="panel editor-panel" aria-labelledby="editor-title">
+            <div class="panel-heading">
+              <h2 id="editor-title">Expression</h2>
+              <select id="task-select" aria-label="Task">
+                <option value="complete">Complete derivation</option>
+                <option value="prob">Probabilities</option>
+                <option value="amp">Amplitudes</option>
+                <option value="matrix">Gate or matrix</option>
+                <option value="latex">LaTeX source</option>
+              </select>
+            </div>
+
+            <textarea
+              id="quick-input"
+              class="quick-input"
+              spellcheck="false"
+              aria-label="Quick quantum expression"
+              placeholder="T|+>=, prob T|+>, mat S"
+            >T|+>=</textarea>
+
+            <div class="mathfield-wrap">
+              <math-field id="math-field" aria-label="Rendered math editor">T\lvert+\rangle=</math-field>
+            </div>
+
+            <div class="toolbar" aria-label="Quantum shortcuts">
+              <button type="button" data-ascii="|0>" data-latex="\lvert 0\rangle">|0&gt;</button>
+              <button type="button" data-ascii="|1>" data-latex="\lvert 1\rangle">|1&gt;</button>
+              <button type="button" data-ascii="|+>" data-latex="\lvert +\rangle">|+&gt;</button>
+              <button type="button" data-ascii="|->" data-latex="\lvert -\rangle">|-&gt;</button>
+              <button type="button" data-ascii="H" data-latex="H">H</button>
+              <button type="button" data-ascii="X" data-latex="X">X</button>
+              <button type="button" data-ascii="Y" data-latex="Y">Y</button>
+              <button type="button" data-ascii="Z" data-latex="Z">Z</button>
+              <button type="button" data-ascii="S" data-latex="S">S</button>
+              <button type="button" data-ascii="T" data-latex="T">T</button>
+              <button type="button" data-ascii=" tensor " data-latex="\otimes">&otimes;</button>
+              <button type="button" data-ascii="1/sqrt(2)" data-latex="\frac{1}{\sqrt{2}}">1/&radic;2</button>
+              <button type="button" data-ascii="exp(i*pi/4)" data-latex="e^{i\pi/4}">e<sup>i&pi;/4</sup></button>
+              <button type="button" data-template="T|+>=" data-latex="T\lvert+\rangle=">T|+&gt;=</button>
+              <button type="button" data-template="S^2=" data-latex="S^2=">S<sup>2</sup>=</button>
+            </div>
+          </section>
+
+          <aside class="panel matrix-panel" aria-labelledby="matrix-title">
+            <div class="panel-heading">
+              <h2 id="matrix-title">Matrix</h2>
+              <div class="matrix-controls">
+                <select id="matrix-rows" aria-label="Rows">
+                  <option value="2">2 rows</option>
+                  <option value="3">3 rows</option>
+                  <option value="4">4 rows</option>
+                </select>
+                <select id="matrix-cols" aria-label="Columns">
+                  <option value="1">1 col</option>
+                  <option value="2" selected>2 cols</option>
+                  <option value="3">3 cols</option>
+                  <option value="4">4 cols</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="matrix-grid" class="matrix-grid" aria-label="Matrix entries"></div>
+
+            <div class="matrix-actions">
+              <button type="button" id="identity-button">Identity</button>
+              <button type="button" id="phase-button">Phase</button>
+              <button type="button" id="insert-matrix-button" class="primary">Insert</button>
+            </div>
+          </aside>
+        </div>
+
+        <section class="panel preview-panel" aria-labelledby="preview-title">
+          <div class="panel-heading">
+            <h2 id="preview-title">Live Preview</h2>
+            <div class="preview-actions">
+              <button type="button" id="copy-latex-button">Copy LaTeX</button>
+              <button type="button" id="copy-ascii-button">Copy shorthand</button>
+            </div>
+          </div>
+          <div id="preview" class="preview" aria-live="polite"></div>
+        </section>
+
+        <section class="panel prompt-panel" aria-labelledby="prompt-title">
+          <div class="panel-heading">
+            <h2 id="prompt-title">Codex Prompt</h2>
+            <button type="button" id="copy-prompt-button" class="primary">Copy prompt</button>
+          </div>
+          <textarea
+            id="codex-prompt"
+            class="codex-prompt"
+            readonly
+            aria-label="Prompt for Codex"
+          ></textarea>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
