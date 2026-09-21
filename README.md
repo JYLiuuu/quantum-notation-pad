@@ -38,8 +38,9 @@ T|+>=
 ```
 
 The skill can produce a derivation such as:
+The skill can produce a derivation such as:
 
-$$
+```math
 T\lvert +\rangle
 =
 \frac{1}{\sqrt{2}}
@@ -51,8 +52,7 @@ e^{i\pi/4}
 \frac{1}{\sqrt{2}}\lvert 0\rangle
 +
 \frac{e^{i\pi/4}}{\sqrt{2}}\lvert 1\rangle.
-$$
-
+```
 Supported shorthand includes:
 
 ```text
