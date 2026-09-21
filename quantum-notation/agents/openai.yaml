@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quantum Notation"
+  short_description: "Render quantum states, gates, and matrices"
+  default_prompt: "Use $quantum-notation to format this quantum state or gate derivation with readable Dirac notation and matrices."
